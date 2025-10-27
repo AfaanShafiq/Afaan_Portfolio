@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <style>
+      /* RESET */
       * {
         margin: 0;
         padding: 0;
@@ -19,8 +20,9 @@
         font-family: "Space Grotesk", sans-serif;
         background: #0e0e0e;
         color: #f5f5f5;
-        overflow-x: hidden;
+        overflow-x: hidden; /* CRITICAL: Prevents all horizontal scrolling */
         line-height: 1.6;
+        min-height: 100vh; /* Ensure body takes full height */
       }
 
       .container {
@@ -36,9 +38,11 @@
         justify-content: center;
         padding: 80px 0;
         position: relative;
+        /* Ensure all sections fit screen width */
+        width: 100%; 
       }
 
-      /* Hero Section */
+      /* HERO SECTION */
       #hero {
         background: linear-gradient(
           135deg,
@@ -183,7 +187,7 @@
         box-shadow: 0 0 30px rgba(255, 145, 77, 0.5);
       }
 
-      /* About Section */
+      /* ABOUT SECTION */
       #about {
         background: #121212;
       }
@@ -265,7 +269,7 @@
         color: #b0b0b0;
       }
 
-      /* Skills Section */
+      /* SKILLS SECTION */
       #skills {
         background: #0e0e0e;
       }
@@ -312,21 +316,21 @@
         box-shadow: 0 0 15px rgba(0, 200, 150, 0.5);
       }
 
-      /* Tech Stack */
+      /* TECH STACK */
       #tech {
         background: #121212;
       }
 
       .tech-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Reduced minmax for mobile */
+        gap: 20px; /* Reduced gap for mobile */
         margin-top: 40px;
       }
 
       .tech-item {
         background: #1a1a1a;
-        padding: 30px;
+        padding: 30px 10px; /* Adjusted padding */
         border-radius: 12px;
         text-align: center;
         transition: all 0.3s ease;
@@ -349,7 +353,7 @@
         color: #b0b0b0;
       }
 
-      /* Projects */
+      /* PROJECTS */
       #projects {
         background: #0e0e0e;
       }
@@ -363,7 +367,7 @@
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
         gap: 30px;
         margin-bottom: 40px;
       }
@@ -448,14 +452,14 @@
         border-color: #ff914d;
       }
 
-      /* Education */
+      /* EDUCATION */
       #education {
         background: #121212;
       }
 
       .education-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
         gap: 30px;
         margin-top: 40px;
       }
@@ -469,7 +473,7 @@
       }
 
       .edu-card:hover {
-        transform: translateX(10px);
+        transform: translateX(5px); /* Reduced hover effect for mobile feel */
         box-shadow: 0 5px 20px rgba(0, 200, 150, 0.2);
       }
 
@@ -489,12 +493,12 @@
         background: #252525;
         padding: 8px 15px;
         border-radius: 20px;
-        margin: 5px;
+        margin: 5px 5px 5px 0; /* Adjusted margin */
         font-size: 0.9rem;
         color: #00c896;
       }
 
-      /* Contact */
+      /* CONTACT */
       #contact {
         background: #0e0e0e;
       }
@@ -629,28 +633,44 @@
         margin-bottom: 10px;
       }
 
-      /* Responsive */
+      /* RESPONSIVE FIXES (MOBILE FIRST ADJUSTMENTS) */
+
+      /* Tablet/Small Desktop */
+      @media (max-width: 992px) {
+        .about-content {
+          grid-template-columns: 1fr; /* Stack the About/Skills-Icons on tablets */
+          gap: 40px;
+        }
+        .skills-icons {
+          justify-content: space-around; /* Center icons when stacked */
+        }
+      }
+
+      /* Phones (General) */
       @media (max-width: 768px) {
         section {
-          padding: 40px 0;
+          min-height: auto; /* Allow sections to collapse on mobile */
+          padding: 60px 0; /* Better vertical padding */
         }
         h1 {
-          font-size: 2.4rem;
+          font-size: 2.5rem; /* Better scale down */
         }
         .title {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
         }
         .section-title {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
         .about-content {
           grid-template-columns: 1fr;
-          gap: 20px;
+          gap: 30px;
         }
+        /* Mobile-specific adjustments for elements that might stretch */
         .skills-grid {
-          grid-template-columns: 1fr;
-          max-width: 520px;
-          margin: 20px auto 0;
+          grid-template-columns: 1fr; /* Stack skills */
+          max-width: 100%;
+          margin: 30px auto 0;
+          gap: 15px;
         }
         .cta-buttons {
           flex-direction: column;
@@ -675,17 +695,30 @@
           padding: 20px;
         }
         .tech-grid {
-          gap: 20px;
+          gap: 10px; /* Tighter grid for tech icons */
         }
         .social-icons {
           gap: 12px;
         }
-        /* hide heavy/background motion on smaller screens */
+        /* CRITICAL: hide heavy/background motion on smaller screens */
         .particles {
           display: none;
         }
+        /* Stack contact info on mobile */
+        .contact-info {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .contact-form {
+          padding: 30px 20px;
+        }
       }
+      
+      /* Very Small Phones */
       @media (max-width: 480px) {
+        .container {
+          padding: 0 10px; /* Reduced container padding for maximum screen use */
+        }
         h1 {
           font-size: 2rem;
         }
@@ -693,29 +726,25 @@
           font-size: 1.1rem;
         }
         .section-title {
-          font-size: 1.6rem;
-        }
-        .container {
-          padding: 0 14px;
+          font-size: 1.8rem;
         }
         .profile-img {
           width: 120px;
           height: 120px;
         }
+        .skills-icons {
+          gap: 10px; /* Tighter gap for the 3 skill icons */
+        }
+        .skill-icon {
+          padding: 15px;
+        }
         .skill-percentage {
           font-size: 0.95rem;
-        }
-        .skill-bar {
-          height: 10px;
-        }
-        .skill-progress {
-          transition: width 1.2s ease;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Hero Section -->
     <section id="hero">
       <div class="particles" id="particles"></div>
       <div class="hero-content">
@@ -731,8 +760,7 @@
         </div>
       </div>
     </section>
-
-    <!-- About Section -->
+    
     <section id="about">
       <div class="container">
         <div class="about-content">
@@ -768,8 +796,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Skills Section -->
+    
     <section id="skills">
       <div class="container">
         <h2 class="section-title">My Skills</h2>
@@ -831,8 +858,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Tech Stack -->
+    
     <section id="tech">
       <div class="container">
         <h2 class="section-title">Technologies I Work With</h2>
@@ -868,8 +894,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Projects -->
+    
     <section id="projects">
       <div class="container">
         <h2 class="section-title">Projects</h2>
@@ -930,8 +955,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Education -->
+    
     <section id="education">
       <div class="container">
         <h2 class="section-title">Education & Achievements</h2>
@@ -954,8 +978,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Contact -->
+    
     <section id="contact">
       <div class="container">
         <h2 class="section-title">Let's Connect</h2>
@@ -1019,14 +1042,14 @@
         </div>
       </div>
     </section>
-
+    
     <div class="success-popup" id="successPopup">
       <h3>Message Sent! ✓</h3>
       <p>Thank you for reaching out. I'll get back to you soon!</p>
     </div>
-
+    
     <script>
-      // Particles animation (disabled on small screens)
+      // Particles animation (disabled on small screens in CSS, checked here too)
       const particlesContainer = document.getElementById("particles");
       if (window.innerWidth > 768 && particlesContainer) {
         const count = 20; // fewer particles for performance
@@ -1042,7 +1065,7 @@
           particlesContainer.appendChild(particle);
         }
       }
-
+    
       // Smooth scrolling
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
@@ -1053,7 +1076,7 @@
           }
         });
       });
-
+    
       // Skills animation on scroll
       const skillsObserver = new IntersectionObserver(
         (entries) => {
@@ -1073,37 +1096,37 @@
         },
         { threshold: 0.25 }
       );
-
+    
       const skillsSection = document.querySelector("#skills");
       if (skillsSection) {
         skillsObserver.observe(skillsSection);
       }
-
+    
       // Contact form
       document
         .getElementById("contactForm")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
+    
           // Show success popup
           const popup = document.getElementById("successPopup");
           popup.classList.add("show");
-
+    
           // Reset form
           this.reset();
-
+    
           // Hide popup after 3 seconds
           setTimeout(() => {
             popup.classList.remove("show");
           }, 3000);
         });
-
+    
       // Add scroll reveal animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -100px 0px",
       };
-
+    
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -1112,7 +1135,7 @@
           }
         });
       }, observerOptions);
-
+    
       // Animate sections on scroll
       document.querySelectorAll("section").forEach((section) => {
         section.style.opacity = "0";
@@ -1120,7 +1143,7 @@
         section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
         observer.observe(section);
       });
-
+    
       // Parallax effect for hero section (only on wider screens)
       if (window.innerWidth > 768) {
         window.addEventListener("scroll", () => {
